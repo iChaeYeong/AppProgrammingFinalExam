@@ -9,8 +9,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.example.finalexam0514.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
     private boolean isDrawerAdded = true; // 사이드바가 추가되었는지의 상태
+    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        fragmentManager = getSupportFragmentManager();
 
         // 툴바 설정
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -56,18 +60,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 사이드바 리스너 설정
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_home) {
+                // 'Home' 클릭 시 처리
+                replaceFragment(new HomeFragment());
+            } else if (itemId == R.id.nav_dashboard) {
+                // 'Dashboard' 클릭 시 처리
+                replaceFragment(new DashboardFragment());
+            } else if (itemId == R.id.nav_notifications) {
+                // 'Notifications' 클릭 시 처리
+                replaceFragment(new NotificationsFragment());
+            }
+            drawerLayout.closeDrawer(navigationView);
+            return true;
+        });
+
         // 하단 네비게이션 바 리스너 설정
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
                 // 'Home' 클릭 시 처리
+                replaceFragment(new HomeFragment());
             } else if (itemId == R.id.nav_dashboard) {
                 // 'Dashboard' 클릭 시 처리
+                replaceFragment(new DashboardFragment());
             } else if (itemId == R.id.nav_notifications) {
                 // 'Notifications' 클릭 시 처리
+                replaceFragment(new NotificationsFragment());
             }
             return true;
         });
+
+        // 기본 프래그먼트 설정
+        if (savedInstanceState == null) {
+            replaceFragment(new HomeFragment());
+        }
     }
 
     // 사이드바 설정 및 제거
@@ -90,5 +119,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             drawerLayout.openDrawer(navigationView); // 사이드바 닫혀 있다면 열기
         }
+    }
+
+    // 프래그먼트 교체
+    private void replaceFragment(Fragment fragment) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
     }
 }
