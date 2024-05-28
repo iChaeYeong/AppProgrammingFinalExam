@@ -122,9 +122,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 프래그먼트 교체
-    private void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null); // 뒤로 가기 버튼으로 돌아올 수 있도록 설정
         transaction.commit();
     }
 }

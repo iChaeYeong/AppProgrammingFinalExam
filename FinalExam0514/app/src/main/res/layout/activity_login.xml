@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/roongji" />
+
+            <EditText
+                android:id="@+id/login_email"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:drawablePadding="8dp"
+                android:hint="Email"
+                android:padding="8dp" />
+
+            <EditText
+                android:id="@+id/login_password"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:drawablePadding="8dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="8dp" />
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="30dp"
+                android:text="Login"
+                android:textSize="18sp"
+                app:cornerRadius="30dp"
+                android:backgroundTint="#EDABAB"/>
+
+            <TextView
+                android:id="@+id/signupRedirectText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                android:text="아직 등록하지 않으셨나요? 회원가입"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/failtext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="아이디와 비밀번호가 일치하지 않습니다."
+                android:textAlignment="center"
+                android:textColor="#FF0000"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp">
+
+            </TextView>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

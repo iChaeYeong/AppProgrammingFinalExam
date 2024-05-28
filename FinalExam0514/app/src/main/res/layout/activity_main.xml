@@ -18,21 +18,23 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#4A4A4A"
-                app:titleTextAppearance="@style/ToolbarTitleText">
+                android:background="#EDABAB"
+                app:titleTextAppearance="@style/ToolbarTitleText"
+                app:contentInsetStart="0dp"
+                app:contentInsetLeft="0dp">
 
                 <ImageButton
                     android:id="@+id/toggleButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#4A4A4A"
-                    android:onClick="toggleDrawer"
-                    android:src="@drawable/baseline_format_list_bulleted_40"
+                    android:backgroundTint="#EDABAB"
                     android:contentDescription="Toggle Drawer"
+                    android:src="@drawable/baseline_format_list_bulleted_40"
                     android:textColor="#FFFFFF" />
 
                 <TextView
@@ -41,10 +43,11 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
+                    android:gravity="center"
                     android:text="MyPET"
                     android:textAppearance="@style/ToolbarTitleText"
-                    android:textColor="#FFFFFF" />
-
+                    android:textColor="#FFFFFF"
+                    android:textSize="30dp" />
             </androidx.appcompat.widget.Toolbar>
 
             <FrameLayout
@@ -67,7 +70,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4A4A4A"
+        android:background="#EDABAB"
         app:menu="@menu/bottom_navigation_menu"
         app:labelVisibilityMode="labeled"
         app:itemTextColor="#ffffff"

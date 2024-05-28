@@ -5,16 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
+ * Use the {@link fragment_home_clothing#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
-
+public class fragment_home_clothing extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +23,7 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public HomeFragment() {
+    public fragment_home_clothing() {
         // Required empty public constructor
     }
 
@@ -35,11 +33,11 @@ public class HomeFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
+     * @return A new instance of fragment fragment_home_clothing.
      */
     // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+    public static fragment_home_clothing newInstance(String param1, String param2) {
+        fragment_home_clothing fragment = new fragment_home_clothing();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,21 +58,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        // 카드뷰 클릭 이벤트 설정
-        CardView clothingCard = view.findViewById(R.id.clothingCard);
-        clothingCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 프래그먼트 전환
-                ((MainActivity) getActivity()).replaceFragment(new fragment_home_clothing());
-            }
-        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_home_clothing, container, false);
     }
-
-
-
-
 }
