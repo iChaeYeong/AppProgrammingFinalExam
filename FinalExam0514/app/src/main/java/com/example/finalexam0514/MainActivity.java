@@ -1,5 +1,7 @@
 package com.example.finalexam0514;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
-    private boolean isDrawerAdded = true; // 사이드바가 추가되었는지의 상태
+    private boolean isDrawerAdded = true;
     private FragmentManager fragmentManager;
 
     @Override
@@ -28,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("login_prefs", MODE_PRIVATE);
+        String userId = LoginActivity.getLoggedInUserId(sharedPreferences);
+
+        if (userId == null) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         // Window insets 적용
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -47,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         // 툴바 설정
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false); // 툴바의 기본 타이틀 비활성화
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // 사이드바 설정 초기화
         setupDrawer();
@@ -60,35 +72,41 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 하단바 리스너 설정
         // 사이드바 리스너 설정
         navigationView.setNavigationItemSelectedListener(item -> {
             int itemId = item.getItemId();
-            if (itemId == R.id.nav_home) {
-                // 'Home' 클릭 시 처리
-                replaceFragment(new HomeFragment());
-            } else if (itemId == R.id.nav_dashboard) {
-                // 'Dashboard' 클릭 시 처리
-                replaceFragment(new DashboardFragment());
-            } else if (itemId == R.id.nav_notifications) {
-                // 'Notifications' 클릭 시 처리
-                replaceFragment(new NotificationsFragment());
+            Intent intent = null;
+            if (itemId == R.id.nav_main) {
+                intent = new Intent(MainActivity.this, MainActivity.class);
+            } else if (itemId == R.id.nav_calender) {
+                intent = new Intent(MainActivity.this, CalenderActivity.class);
+            } else if (itemId == R.id.nav_logout) {
+                intent = new Intent(MainActivity.this, LoginActivity.class);
+            }
+
+            if (intent != null) {
+                startActivity(intent);
             }
             drawerLayout.closeDrawer(navigationView);
             return true;
         });
 
+
         // 하단 네비게이션 바 리스너 설정
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
+            Fragment fragment = null;
             if (itemId == R.id.nav_home) {
-                // 'Home' 클릭 시 처리
-                replaceFragment(new HomeFragment());
+                fragment = new HomeFragment();
             } else if (itemId == R.id.nav_dashboard) {
-                // 'Dashboard' 클릭 시 처리
-                replaceFragment(new DashboardFragment());
+                fragment = new DashboardFragment();
             } else if (itemId == R.id.nav_notifications) {
-                // 'Notifications' 클릭 시 처리
-                replaceFragment(new NotificationsFragment());
+                fragment = new NotificationsFragment();
+            }
+
+            if (fragment != null) {
+                replaceFragment(fragment);
             }
             return true;
         });
@@ -111,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
     // 토글 드로어 상태
     private void toggleDrawer() {

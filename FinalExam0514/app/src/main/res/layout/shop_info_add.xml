@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/shop_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="가게명" />
+
+    <EditText
+        android:id="@+id/shop_adress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="가게 주소" />
+
+    <EditText
+        android:id="@+id/shop_inpo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="가게 정보" />
+
+    <EditText
+        android:id="@+id/shop_opentime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="영업시간" />
+</LinearLayout>
