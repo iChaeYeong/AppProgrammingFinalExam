@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:src="@drawable/baseline_home_24" />
+        android:src="@drawable/baseline_assignment_add_24"
+        android:backgroundTint="#EDABAB"/>
 
 </LinearLayout>
    </androidx.core.widget.NestedScrollView>
