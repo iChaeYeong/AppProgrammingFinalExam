@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NotificationsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="NotificationsFragment" />
+    <!-- 프로필 사진 -->
+    <ImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/human" />
 
-</FrameLayout>
+    <!-- 사용자 이름 -->
+    <TextView
+        android:id="@+id/userIdTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:hint="userID"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- 유저네임 -->
+    <TextView
+        android:id="@+id/userHandleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userIdTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="username"
+        android:textSize="16sp" />
+
+    <!-- 반려동물 품종 -->
+    <TextView
+        android:id="@+id/userPetBreedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userHandleTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:hint="Pet Breed"
+        android:textSize="16sp" />
+
+    <!-- 바이오 -->
+    <TextView
+        android:id="@+id/bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userPetBreedTextView"
+        android:layout_margin="16dp"
+        android:text="바이오 (자기소개 및 링크)"
+        android:textSize="16sp" />
+
+</RelativeLayout>

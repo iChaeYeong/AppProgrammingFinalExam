@@ -12,13 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="380dp"
             android:padding="20dp">
+
+            <EditText
+                android:id="@+id/signupUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User Name" />
 
 
             <EditText
@@ -27,7 +32,16 @@
                 android:id="@+id/signup_email"
                 android:layout_marginTop="30dp"
                 android:padding="8dp"
-                android:hint="Email"
+                android:hint="ID"
+                android:drawablePadding="8dp"/>
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:id="@+id/pet_breed"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:hint="pet_breed"
+                android:inputType="text"
                 android:drawablePadding="8dp"/>
 
             <EditText
@@ -55,6 +69,7 @@
                 android:layout_height="70dp"
                 android:text="Sign Up"
                 android:id="@+id/signup_button"
+                android:backgroundTint="#EDABAB"
                 android:textSize="18sp"
                 android:layout_marginTop="30dp"
                 app:cornerRadius = "30dp"/>

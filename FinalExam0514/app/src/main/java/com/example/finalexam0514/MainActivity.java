@@ -103,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new DashboardFragment();
             } else if (itemId == R.id.nav_notifications) {
                 fragment = new NotificationsFragment();
+                Bundle args = new Bundle();
+                args.putString("USER_EMAIL", userId);
+                fragment.setArguments(args);
             }
 
             if (fragment != null) {

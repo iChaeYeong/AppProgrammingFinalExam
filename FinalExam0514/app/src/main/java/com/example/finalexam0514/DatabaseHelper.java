@@ -1,10 +1,12 @@
 package com.example.finalexam0514;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -18,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS users(email TEXT PRIMARY KEY, password TEXT)");
+        db.execSQL("CREATE TABLE users (username TEXT, email TEXT PRIMARY KEY, pet_breed TEXT, password TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS posts(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT, author TEXT)");
         db.execSQL("CREATE TABLE IF NOT EXISTS shops(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, address TEXT, info TEXT, openTime TEXT, user TEXT)");
     }
@@ -31,13 +33,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String email, String password) {
+    public boolean insertData(String username, String email, String petbreed, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put("username", username);
         contentValues.put("email", email);
+        contentValues.put("pet_breed", petbreed);
         contentValues.put("password", password);
         long result = db.insert("users", null, contentValues);
+        db.close();
         return result != -1;
+    }
+    public User getUserByEmail(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT username, pet_breed, password FROM users WHERE email = ?", new String[]{email});
+        try {
+            if (cursor.moveToFirst()) {
+                @SuppressLint("Range") String username = cursor.getString(cursor.getColumnIndex("username"));
+                @SuppressLint("Range") String petBreed = cursor.getString(cursor.getColumnIndex("pet_breed"));
+                @SuppressLint("Range") String password = cursor.getString(cursor.getColumnIndex("password"));
+                return new User(username, email, petBreed, password);
+            }
+            return null;
+        } finally {
+            cursor.close();
+            db.close();
+        }
     }
 
     public boolean insertPost(String title, String content, String author) {
